@@ -1,0 +1,10 @@
+﻿namespace LogicBuilder.App.Maui.ViewModels
+{
+    public interface IFormField
+    {
+        string Name { get; set; }
+        bool IsVisible { get; set; }
+        object? Value { get; set; }
+        void Clear();
+    }
+}
