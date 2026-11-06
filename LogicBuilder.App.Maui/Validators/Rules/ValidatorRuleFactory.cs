@@ -194,12 +194,28 @@ namespace LogicBuilder.App.Maui.Validators.Rules
             );
         }
 
-        private AtLeastOneRequiredRule<T> GetAtLeastOneRequiredRule<T>(string field, string validationMessage, ObservableCollection<IValidatable> fields)
+        private IValidationRule GetAtLeastOneRequiredRule<T>(string field, string validationMessage, ObservableCollection<IValidatable> fields)
         {
             if (!typeof(IEnumerable<object>).IsAssignableFrom(typeof(T)))
                 throw new InvalidOperationException("Type must be IEnumerable<object>.");
 
-            return new AtLeastOneRequiredRule<T>(GetFieldName(field), validationMessage, fields);
+            return (IValidationRule)
+                Activator.CreateInstance
+                (
+                    typeof(AtLeastOneRequiredRule<>).MakeGenericType
+                    (
+                        typeof(ObservableCollection<>).MakeGenericType
+                        (
+                            typeof(T).GetGenericArguments()[0]
+                        )
+                    ),
+                    [
+                        GetFieldName(field),
+                        validationMessage,
+                        fields
+                    ]
+                )!;/*Initialized type is not nullable*/
+
         }
 
         string GetFieldName(string field)

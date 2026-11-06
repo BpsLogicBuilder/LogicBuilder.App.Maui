@@ -1,6 +1,8 @@
 ﻿using LogicBuilder.App.Maui.Business.Settings;
 using System.Reactive.Subjects;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("LogicBuilder.App.Maui.Test")]
 namespace LogicBuilder.App.Maui
 {
     public class UiNotificationService : IUiNotificationService

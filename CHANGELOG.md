@@ -1,3 +1,4 @@
+* 2026-11-05 - AB#250: AtLeastOneRequiredRule needs ObservableCollection as generic argument.
 * 2026-11-04 - AB#180: Add CICD workflows.
 * 2026-11-04 - AB#180: Update README.md.
 * 2026-11-04 - AB#180: Add change log.
